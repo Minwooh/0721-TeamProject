@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글 확인 화면</title>
+  </head>
+
+  <style>
+    #container {
+      background: #dedede;
+
+      width: 414px;
+      height: 736px;
+
+      margin: 0px auto;
+    }
+
+    #top-box {
+      background-color: aqua;
+      height: 40px;
+
+      padding-top: 20px;
+      padding-left: 195px;
+    }
+    .top-btn {
+      width: 100px;
+      height: 27px;
+
+      border: none;
+      border-radius: 20px;
+      background: #d9d9d9;
+
+      color: #000;
+      font-family: Inter;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+
+    #text-box {
+      margin-left: 50px;
+    }
+
+    #content-box {
+      background-color: blanchedalmond;
+
+      width: 350px;
+      height: 463px;
+
+      margin-left: 33px;
+
+      border-radius: 8px;
+      border: 1px solid #000;
+      background: #efefef;
+    }
+
+    #cont-personal {
+      background-color: brown;
+      height: 50px;
+
+      margin-top: 10px;
+      padding: 5px;
+    }
+    #person-img {
+      width: 42px;
+      height: 42px;
+
+      fill: #ababab;
+    }
+
+    #cont-price {
+      background-color: burlywood;
+
+      height: 20px;
+      margin-top: 10px;
+    }
+    #cont-title {
+      background-color: rgb(124, 99, 207);
+      height: 35px;
+      margin-top: 6px;
+    }
+    #cont-img {
+      background-color: cadetblue;
+      height: 150px;
+
+      margin-top: 10px;
+    }
+    #cont-textarea {
+      margin-left: 30px;
+      margin-top: 15px;
+    }
+
+    #bottom-box {
+      background-color: blueviolet;
+      height: 50px;
+      margin-top: 15px;
+    }
+  </style>
+
+  <body>
+    <div id="container">
+      <div id="top-box">
+        <button class="top-btn">로그아웃</button>
+        <button class="top-btn">마이페이지</button>
+      </div>
+      <div id="text-box">
+        <img src="/img/title.png" />
+      </div>
+      <div id="content-box">
+        <div id="cont-personal">
+          <div id="person-img"></div>
+          <div id="person-name"></div>
+          <div id="person-nick"></div>
+        </div>
+        <div id="cont-price"></div>
+        <div id="cont-title"></div>
+        <div id="cont-img"></div>
+        <textarea id="cont-textarea"></textarea>
+      </div>
+      <div id="bottom-box">
+        <button>연락하기</button>
+        <button>관심목록 지정</button>
+      </div>
+    </div>
+  </body>
+</html>
