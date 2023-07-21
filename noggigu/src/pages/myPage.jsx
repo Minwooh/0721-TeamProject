@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useState, useEffect } from "react";
 
 const Container = styled.div`
   width: 414px;
@@ -127,11 +128,11 @@ const MiddleContent = styled.div`
   background: #fff;
   box-shadow: 0px 0px 3px 0px rgba(23, 58, 0, 0.6);
 
-  color: #0c0c0c;
+  color: #000;
   font-family: Inter;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: normal;
 `;
 
@@ -151,13 +152,157 @@ const ListText = styled.div`
   line-height: normal;
 `;
 const ListBox = styled.div`
-  background-color: coral;
-  height: 180px;
-  width: 370px;
+  height: 190px;
+  width: 390px;
 
-  margin-left: 23px;
-  margin-top: 15px;
+  overflow: auto;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  padding-left: 20px;
+  padding-top: 10px;
+
+  margin-left: 2px;
+  margin-top: 10px;
 `;
+
+const WhiteBox = styled.div`
+  width: 360px;
+  height: 65px;
+
+  margin-bottom: 10px;
+
+  background: #fff;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+`;
+const HeartImg = styled.div`
+  width: 12px;
+
+  margin-left: 340px;
+`;
+const LookImg = styled.img`
+  width: 50px;
+  height: 50px;
+
+  margin-left: 10px;
+  margin-top: -15px;
+`;
+const Title = styled.div`
+  display: inlin-box;
+  margin-top: -50px;
+  margin-left: 80px;
+`;
+const Preview = styled.div`
+  position: relative;
+  height: 20px;
+  width: 200px;
+  margin-left: 80px;
+`;
+const SeedImg = styled.div`
+  margin-left: 285px;
+  margin-top: -15px;
+`;
+const ClickCount = styled.div`
+  margin-left: 305px;
+  margin-top: -24px;
+`;
+
+const NongArea = styled.div`
+  background-color: #00ff22;
+  width: 330px;
+  height: 60px;
+
+  margin-left: 3px;
+
+  color: #0c0c0c;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+const LandArea = styled.div`
+  background-color: #00ff22;
+  width: 330px;
+  height: 60px;
+
+  margin-left: 3px;
+
+  color: #0c0c0c;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+const ListContent = () => {
+  return (
+    <WhiteBox>
+      <HeartImg>
+        <img src="./img/heart.png" style={{ height: "10px" }} />
+      </HeartImg>
+      <LookImg src="./img/basic.png"></LookImg>
+      <Title>제목</Title>
+      <Preview>글 미리보기</Preview>
+      <SeedImg>
+        <img src="./img/seed.png" />
+      </SeedImg>
+      <ClickCount>4300</ClickCount>
+    </WhiteBox>
+  );
+};
+
+const DisplayItems = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    // localStorage에서 ITEMS 배열 가져오기
+    const savedItems = localStorage.getItem("ITEMS");
+    if (savedItems) {
+      setItems(JSON.parse(savedItems));
+    }
+  }, []);
+
+  return (
+    <div>
+      {items.map((item) => (
+        <div key={item.id}>
+          <p
+            style={{
+              display: "inline-block",
+              marginRight: "5px",
+              color: "#0C0C0C",
+              fontFamily: "Inter",
+              fontSize: "13px",
+              fontStyle: "normal",
+              fontWeight: 400,
+              lineHeight: "normal",
+            }}
+          >
+            {item.id++}.
+          </p>
+          <h2
+            style={{
+              display: "inline-block",
+              color: "#0C0C0C",
+              fontFamily: "Inter",
+              fontSize: "13px",
+              fontStyle: "normal",
+              fontWeight: 400,
+              lineHeight: "normal",
+            }}
+          >
+            {item.title}
+          </h2>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const Page = () => {
   return (
@@ -177,25 +322,30 @@ const Page = () => {
 
       <MiddleBox>
         <MiddleTitle>
-          <img src="/img/pen.png" style={{ width: "15px" }} />
+          <img src="/img/pen.png" alt="펜" style={{ width: "15px" }} />
           작성한 글
         </MiddleTitle>
         <MiddleContent>
-          {" "}
+          {/* 농기구랑 토지 페이지에서 받은 데이터 구분 필요!! 배열 이름 다르게 하기 */}
           농기구
-          <br />
-          1.농기구 대여합니다. 오늘까지만 대여할게요.
-          <br />
-          2.6월 30일까지 대여합니다. 가져가세요.
+          <NongArea>
+            <DisplayItems />
+          </NongArea>
+          토지
+          <LandArea></LandArea>
         </MiddleContent>
       </MiddleBox>
 
       <LikeBox>
         <ListText>
-          <img src="/img/heart.png" style={{ width: "18px" }} />
+          <img src="/img/heart.png" alt="하트" style={{ width: "18px" }} />
           관심목록
         </ListText>
-        <ListBox></ListBox>
+        <ListBox>
+          <ListContent />
+          <ListContent />
+          <ListContent />
+        </ListBox>
       </LikeBox>
     </Container>
   );

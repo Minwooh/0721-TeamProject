@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 414px;
@@ -27,15 +29,6 @@ const Button = styled.button`
   line-height: normal;
   text-decoration-line: underline;
 `;
-
-const Top = () => {
-  return (
-    <TopBox>
-      <Button>로그아웃</Button>
-      <Button>마이페이지</Button>
-    </TopBox>
-  );
-};
 
 const TitleBox = styled.div`
   margin-top: 15px;
@@ -85,11 +78,33 @@ const ContentBox = styled.div`
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
 `;
 const ConditionBox = styled.div`
-  background-color: rgb(43, 101, 152);
   height: 30px;
 
-  padding-left: 220px;
+  padding-left: 127px;
   margin-top: 13px;
+`;
+const ConditionDo = styled.div`
+  postion: relative;
+
+  margin-top: -22px;
+  margin-left: 40px;
+
+  width: 85px;
+  height: 24px;
+  flex-shrink: 0;
+
+  background: #efefef;
+`;
+const ConditionDong = styled.div`
+  postion: relative;
+
+  margin-top: -24px;
+  margin-left: 135px;
+  width: 85px;
+  height: 24px;
+  flex-shrink: 0;
+
+  background: #efefef;
 `;
 
 const TextBox = styled.div`
@@ -213,6 +228,25 @@ const Write = () => {
     localStorage.setItem("ITEMS", JSON.stringify(ITEMS));
   }, [ITEMS]);
 
+  const navigate = useNavigate();
+
+  const GoFind = () => {
+    navigate("/find");
+  };
+
+  const GoMy = () => {
+    navigate("/myPage");
+  };
+
+  const Top = () => {
+    return (
+      <TopBox>
+        <Button>로그아웃</Button>
+        <Button onClick={GoMy}>마이페이지</Button>
+      </TopBox>
+    );
+  };
+
   const handleSave = () => {
     // 저장 버튼이 클릭되었을 때 실행되는 로직
     // 서버에 데이터를 전송하여 저장하는 코드를 여기에 작성합니다.
@@ -228,6 +262,10 @@ const Write = () => {
     };
 
     setITEMS([...ITEMS, newItem]);
+
+    localStorage.setItem("ITEMS", JSON.stringify([...ITEMS, newItem]));
+    console.log("저장!!");
+    GoFind();
   };
 
   const handleMouseEnter = () => {
@@ -242,7 +280,7 @@ const Write = () => {
     <Container>
       <Top />
       <TitleBox>
-        <img src="/img/title.png" />
+        <img src="/img/title.png" alt="있농" />
         <Line></Line>
       </TitleBox>
 
@@ -252,8 +290,11 @@ const Write = () => {
       </InputTitle>
 
       <ContentBox>
-        <ConditionBox></ConditionBox>
-
+        <ConditionBox>
+          지역
+          <ConditionDo></ConditionDo>
+          <ConditionDong></ConditionDong>
+        </ConditionBox>
         <TextBox>
           <InputImg></InputImg>
           <InputContent
@@ -261,13 +302,12 @@ const Write = () => {
             onChange={(e) => setContent(e.target.value)}
           ></InputContent>
         </TextBox>
-
         <AddBox onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <img src="/img/img.png" />
+          <img src="/img/img.png" alt="사진첨부" />
           {isDropdownOpen && (
             <DropdownMenu>
               <DropdownItem>
-                <img src="/img/link.png" />
+                <img src="/img/link.png" alt="링크첨부" />
               </DropdownItem>
               {/* <DropdownItem></DropdownItem> */}
             </DropdownMenu>
@@ -282,7 +322,14 @@ const Write = () => {
         </PriceBox>
       </ContentBox>
 
-      <Button2 onClick={handleSave}>등록하기</Button2>
+      <Button2
+        onClick={() => {
+          handleSave();
+          //GoFind();
+        }}
+      >
+        등록하기
+      </Button2>
     </Container>
   );
 };
