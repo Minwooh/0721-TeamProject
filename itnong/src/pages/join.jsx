@@ -213,7 +213,7 @@ const Popup = ({ onClose }) => {
   const navigate = useNavigate();
   const gotoReLogin = () => {
     onClose();
-    navigate("/");
+    navigate("/login");
   };
   return (
     <ModalOverlay>
