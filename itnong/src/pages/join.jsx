@@ -207,14 +207,13 @@ const ModalContent = styled.div`
 
 const ReLoginButton = styled.span`
   position: relative;
-  top: 50px;
 `;
 
 const Popup = ({ onClose }) => {
   const navigate = useNavigate();
   const gotoReLogin = () => {
     onClose();
-    navigate("/");
+    navigate("/login");
   };
   return (
     <ModalOverlay>
@@ -350,8 +349,8 @@ const Join = () => {
             width="110px"
           />
         </Joinbtn>
+        {showPopup && <Popup onClose={handleClosePopup} />}
       </Graybox>
-      {showPopup && <Popup onClose={handleClosePopup} />}
     </Container>
   );
 };
