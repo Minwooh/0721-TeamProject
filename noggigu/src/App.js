@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import styled from "styled-components";
+import Styled from "styled-components";
 
 import MyPage from "./pages/myPage";
 import WritePage from "./pages/findEquip/write";
@@ -17,7 +17,7 @@ const App = () => {
           position: "relative",
         }}
       >
-        <styled />
+        <Styled />
         <Routes>
           <Route path="/" element={<WritePage />} />
           <Route path="/find" element={<FindPage />} />
