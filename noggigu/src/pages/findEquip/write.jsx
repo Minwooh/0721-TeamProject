@@ -74,7 +74,7 @@ const ContentBox = styled.div`
   margin-top: 17px;
 
   border-radius: 10px;
-  background: #fff;
+  background-color: #ffff;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
 `;
 const ConditionBox = styled.div`
@@ -262,7 +262,7 @@ const Write = () => {
     };
 
     setITEMS([...ITEMS, newItem]);
-
+    //props로 넘기기
     localStorage.setItem("ITEMS", JSON.stringify([...ITEMS, newItem]));
     console.log("저장!!");
     GoFind();
