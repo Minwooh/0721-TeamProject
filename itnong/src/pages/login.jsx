@@ -136,7 +136,6 @@ const Login = () => {
       <Graybox>
         <LoginTitle>로그인</LoginTitle>
         <Line></Line>
-
         <Content>
           <IDForm
             type="text"
